@@ -1,18 +1,19 @@
 <?php
 require 'dbconnect.php';
 
-$username=$_GET['uname']	;
-$pass = $_GET['pass'];
+//$type=$_GET['type']	;
+$roomnumber = $_GET['roomnumber'];
 
 $sql = "
-SELECT * FROM campusmitra.user where username='$username' and userpassword='$pass'";
+Select RoomType  from Room where RoomNumber='$roomnumber'";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 $outp = $result->fetch_all(MYSQLI_ASSOC);
 
-echo json_encode($outp);
+echo $result;
+//echo json_encode($outp);
 
 $conn->close();
 ?>
