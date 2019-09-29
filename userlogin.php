@@ -6,7 +6,6 @@ $pass = $_GET['pass'];
 
 $sql = "
 SELECT * FROM campusmitra.user where username='$username' and userpassword='$pass';";
-$msg='';
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
