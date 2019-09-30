@@ -9,15 +9,15 @@ require 'dbconnect.php';
 
 $utype = $_GET['utype']; //update type
 $newValue = $_GET['newvalue']; // new value to be replaced
-$uid = $_GET['fid'];
+$uid = $_GET['sid'];
 $sql="";
 if($utype=='0'){
-	// to change profile link
-	$sql = "Update faculty set faculty_profile='$newValue' where facultyid = '$uid'";
+	// to change ROLL NUMBER
+	$sql = "Update Student set student_rollnumber='$newValue' where student_id = '$uid'";
 }
 elseif($utype=='1'){
-	// to availability status
-	$sql = "Update faculty set availability_status='$newValue' where facultyid = '$uid'";
+	// to change AREA OF INTEREST
+	$sql = "Update Student set area_interest='$newValue' where student_id = '$uid'";
 }
 else{
 	$sql = "";

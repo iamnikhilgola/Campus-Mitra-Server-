@@ -9,15 +9,19 @@ require 'dbconnect.php';
 
 $utype = $_GET['utype']; //update type
 $newValue = $_GET['newvalue']; // new value to be replaced
-$uid = $_GET['fid'];
+$uid = $_GET['sid'];
 $sql="";
 if($utype=='0'){
-	// to change profile link
-	$sql = "Update faculty set faculty_profile='$newValue' where facultyid = '$uid'";
+	// to change ROOM NUMBER
+	$sql = "Update Room set RoomNumber='$newValue' where Roomid = '$uid'";
 }
 elseif($utype=='1'){
-	// to availability status
-	$sql = "Update faculty set availability_status='$newValue' where facultyid = '$uid'";
+	// to change AREA OF INTEREST
+	$sql = "Update Room set RoomBuilding='$newValue' where Roomid = '$uid'";
+}
+elseif ($utype=='2') {
+	// To change 
+	$sql = "Update Room set RoomType='$newValue' where Roomid = '$uid'";
 }
 else{
 	$sql = "";
