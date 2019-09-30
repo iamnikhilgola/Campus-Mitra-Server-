@@ -6,12 +6,17 @@ $day = $_GET['day'];
 $facultyid= $_GET['facultyid'];
 $DND= $_GET['dnd'];
 $sql = "INSERT INTO Office_hours (`start_time`, `end_time`, `day`,`facultyid`,`DND`) VALUES ('$starttime', '$endtime','$day','$facultyid','$dnd')";
-$msg='';
+
+
+$response = array();
 if ($conn->query($sql) === TRUE) {
-     $msg = "1";
+     //$msg = "1";
+     $response["success"]=1;
+     $response["message"]="Data added Successfully";
 } else {
-    $msg = "0";
+	$response["success"]=0;
+     $response["message"]="Oops! An error occurred.";
 }
-echo json_encode($msg);
+echo json_encode($response);
 $conn->close();
 ?>

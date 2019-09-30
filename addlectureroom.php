@@ -5,12 +5,18 @@ $LectureRoomcol= $_GET['lectureroomcol'];
 $Room_Roomid= $_GET['roomid'];
 $sql = "INSERT INTO LectureRoom (`LectureRoomCapacity`,'LectureRoomcol','Room_Roomid') 
 VALUES ('$lectureroomcapacity','$lectureroomcol','$roomid')";
-$msg='';
+
+
+$response = array();
 if ($conn->query($sql) === TRUE) {
-     $msg = "1";
+     //$msg = "1";
+     $response["success"]=1;
+     $response["message"]="Data added Successfully";
 } else {
-    $msg = "0";
+	$response["success"]=0;
+     $response["message"]="Oops! An error occurred.";
 }
-echo json_encode($msg);
+echo json_encode($response);
+
 $conn->close();
 ?>
