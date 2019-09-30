@@ -23,15 +23,16 @@ else{
 	$sql = "";
 }
 
+$response = array();
 if ($conn->query($sql) === TRUE) {
-     $msg = "1";
+     //$msg = "1";
+     $response["success"]=1;
+     $response["message"]="Updated added Successfully";
 } else {
-    $msg = "0";
+	$response["success"]=0;
+     $response["message"]="Oops! An error occurred.";
 }
-echo json_encode($msg);
-$conn->close();
-echo json_encode($outp);
-
+echo json_encode($response);
 $conn->close();
 ?>
 
