@@ -9,7 +9,7 @@ require 'dbconnect.php';
 
 $utype = $_GET['utype']; //update type
 $newValue = $_GET['newvalue']; // new value to be replaced
-$uid = $_GET['uid'];
+$userid = $_GET['uid'];
 $sql="";
 if($utype==0){
 	// to change first name 
