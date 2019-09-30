@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS `campusmitra`.`User` (
   `usertype` VARCHAR(45) NULL,
   `useremail` VARCHAR(60) NULL,
   `userpersonalmail` VARCHAR(60) NULL,
+  `userimage` VARCHAR(100) NULL,
+  `userfb` VARCHAR(150) NULL,
+  `userlinkedin` VARCHAR(150) NULL,
   PRIMARY KEY (`userid`),
   UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -75,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `campusmitra`.`Room` (
   `RoomNumber` VARCHAR(30) NOT NULL,
   `RoomBuilding` VARCHAR(45) NOT NULL,
   `RoomType` VARCHAR(45) NOT NULL,
+  `RoomImage` VARCHAR(150) NULL,
   PRIMARY KEY (`Roomid`))
 ENGINE = InnoDB;
 
@@ -293,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `campusmitra`.`Appointment` (
   `facultyid` INT NOT NULL,
   `appointment_status` INT NULL,
   `Student_student_id` INT NOT NULL,
+  `appointment_remarks` VARCHAR(200) NULL,
   PRIMARY KEY (`appointmentid`),
   INDEX `fk_Appointment_faculty1_idx` (`facultyid` ASC) VISIBLE,
   INDEX `fk_Appointment_Student1_idx` (`Student_student_id` ASC) VISIBLE,
@@ -338,6 +343,8 @@ CREATE TABLE IF NOT EXISTS `campusmitra`.`Project` (
   `description` VARCHAR(150) NULL,
   `project_link` VARCHAR(45) NULL,
   `ResearchLabs_researchLabsid` INT NOT NULL,
+  `project_image` VARCHAR(150) NULL,
+  `project_video` VARCHAR(150) NULL,
   PRIMARY KEY (`projectid`),
   INDEX `fk_Project_ResearchLabs1_idx` (`ResearchLabs_researchLabsid` ASC) VISIBLE,
   CONSTRAINT `fk_Project_ResearchLabs1`

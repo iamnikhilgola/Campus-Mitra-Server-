@@ -18,29 +18,30 @@ $roomtype = $outp["RoomType"];
 $Sql1="";
 if($roomtype=='0'){
 	//Lecture Room
-	$Sql1 = "Select * from Room,LectureRoom where Room.Roomid=LectureRoom.Room_Roomid";
+
+	$Sql1 = "Select * from Room,LectureRoom where Room.Roomid=LectureRoom.Room_Roomid and Room.RoomNumber='$roomnumber'";
 }
 elseif ($roomtype=='1') {
 	//Discussion Room
-	$Sql1="Select * from Room,DiscussionRoom where Room.Roomid=DiscussionRoom.Room_Roomid";
+	$Sql1="Select * from Room,DiscussionRoom where Room.Roomid=DiscussionRoom.Room_Roomid and Room.RoomNumber='$roomnumber'";
 }
 elseif ($roomtype=='2') {
 	# code...
 	//MEETING ROOM
-	$Sql1="Select * from Room,MeetingRoom where Room.Roomid=MeetingRoom.Room_Roomid";
+	$Sql1="Select * from Room,MeetingRoom where Room.Roomid=MeetingRoom.Room_Roomid and Room.RoomNumber='$roomnumber'";
 }
 elseif($roomtype=='3'){
-	$Sql1="Select * from faculty,faculty_office,Room where Room.Roomid=faculty_office.Roomid and faculty_office.facultyid = faculty.facultyid";
+	$Sql1="Select * from faculty,faculty_office,Room where Room.Roomid=faculty_office.Roomid and (faculty_office.facultyid = faculty.facultyid and Room.RoomNumber='$roomnumber')";
 	//faculty office	
 }
 elseif ($roomtype=='4') {
 	# code...
 	//Lab
-	$Sql1 ="Select * from Room,Lab where Room.Roomid = Lab.Room_Roomid";
+	$Sql1 ="Select * from Room,Lab where Room.Roomid = Lab.Room_Roomid and Room.RoomNumber='$roomnumber'";
 
 }
 elseif($roomtype=='5'){
-	$Sql1 = "Select * from Room,ResearchLabs,faculty where Room.Roomid = ResearchLabs.Room_Roomid and faculty.facultyid=ResearchLabs.faculty_facultyid";
+	$Sql1 = "Select * from Room,ResearchLabs,faculty where Room.Roomid = ResearchLabs.Room_Roomid and (faculty.facultyid=ResearchLabs.faculty_facultyid and Room.RoomNumber='$roomnumber')";
 }
 else{
 	$Sql1="";
