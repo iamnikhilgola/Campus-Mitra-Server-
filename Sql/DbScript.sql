@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `campusmitra`.`User` (
   `username` VARCHAR(45) NOT NULL,
   `userfirstname` VARCHAR(45) NOT NULL,
   `userlastname` VARCHAR(45) NULL,
+  `gender` VARCHAR(10) NULL,
   `userdob` VARCHAR(45) NULL,
   `userpassword` VARCHAR(45) NULL,
   `usertype` VARCHAR(45) NULL,

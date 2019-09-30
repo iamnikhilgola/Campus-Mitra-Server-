@@ -1,48 +1,56 @@
 <?php
 require 'dbconnect.php';
 
+
+//There is no option to update USERNAME and IIITD Email
+
+
 //$type=$_GET['type']	;
-$roomtype = $_GET['type'];
 
-//echo $result;
-//echo json_encode($outp);
-$Sql1="";
-if($roomtype=='0'){
-	//Lecture Room
-
-	$Sql1 = "Select * from Room,LectureRoom where Room.Roomid=LectureRoom.Room_Roomid";
+$utype = $_GET['utype']; //update type
+$newValue = $_GET['newvalue']; // new value to be replaced
+$uid = $_GET['uid'];
+$sql="";
+if($utype==0){
+	// to change first name 
+	$sql = "Update User set userfirstname='$newValue' where userid = '$userid'";
 }
-elseif ($roomtype=='1') {
-	//Discussion Room
-	$Sql1="Select * from Room,DiscussionRoom where Room.Roomid=DiscussionRoom.Room_Roomid";
+elseif($utype==1){
+	// to change last name
+	$sql = "Update User set userlastname='$newValue' where userid = '$userid'";
 }
-elseif ($roomtype=='2') {
+elseif($utype==2){
+	//to change dob
+	$sql = "Update User set userdob='$newValue' where userid = '$userid'";
+}
+elseif($utype==3) {
+	// to change password
+	$sql = "Update User set userpassword='$newValue' where userid = '$userid'";
+}
+elseif($utype==4){
+	// to change personal mail
+	$sql = "Update User set userpersonalmail='$newValue' where userid = '$userid'";
+}
+elseif ($utype==5) {
 	# code...
-	//MEETING ROOM
-	$Sql1="Select * from Room,MeetingRoom where Room.Roomid=MeetingRoom.Room_Roomid";
+	// to update fb link
+	$sql = "Update User set userfb='$newValue' where userid = '$userid'";
 }
-elseif($roomtype=='3'){
-	$Sql1="Select * from faculty,faculty_office,Room where Room.Roomid=faculty_office.Roomid and faculty_office.facultyid = faculty.facultyid";
-	//faculty office	
-}
-elseif ($roomtype=='4') {
-	# code...
-	//Lab
-	$Sql1 ="Select * from Room,Lab where Room.Roomid = Lab.Room_Roomid and Room.RoomNumber='$roomnumber'";
-
-}
-elseif($roomtype=='5'){
-	$Sql1 = "Select * from Room,ResearchLabs,faculty where Room.Roomid = ResearchLabs.Room_Roomid and faculty.facultyid=ResearchLabs.faculty_facultyid ";
+elseif($utype==6){
+	// to update linkedin profile
+	$sql = "Update User set userlinkedin='$newValue' where userid = '$userid'";
 }
 else{
-	$Sql1="";
+	$sql = "";
 }
 
-$stmt = $conn->prepare($Sql1);
-$stmt->execute();
-$result = $stmt->get_result();
-$outp = $result->fetch_all(MYSQLI_ASSOC);
-
+if ($conn->query($sql) === TRUE) {
+     $msg = "1";
+} else {
+    $msg = "0";
+}
+echo json_encode($msg);
+$conn->close();
 echo json_encode($outp);
 
 $conn->close();
